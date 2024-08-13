@@ -4,30 +4,40 @@ class Program
 {
     static void Main()
     {
-        // Kullanıcıdan veri alır
-        Console.Write("Lütfen bir sayı giriniz: ");
-        string input = Console.ReadLine();
-
-        try
+        while (true) // Sonsuz döngü başlatılıyor
         {
-            // Girişi sayıya çevirir
-            double number = Convert.ToDouble(input);
+            // Kullanıcıdan veri al
+            Console.Write("Lütfen bir sayı giriniz (Çıkmak için 'q' yazın): ");
+            string input = Console.ReadLine();
 
-            // Sayının karesini hesaplar
-            double square = number * number;
+            // Kullanıcı 'q' girerse döngüden çık
+            if (input.ToLower() == "q")
+            {
+                Console.WriteLine("Programdan çıkılıyor...");
+                break;
+            }
 
-            // Sonucu ekrana yazdırır
-            Console.WriteLine($"Girdiğiniz sayının karesi: {square}");
-        }
-        catch (FormatException)
-        {
-            // Hatalı giriş ekanı
-            Console.WriteLine("Geçersiz giriş! Lütfen bir sayı giriniz.");
-        }
-        finally
-        {
-            // Her durumda çalışacak mesaj
-            Console.WriteLine("Program sona erdi.");
+            try
+            {
+                // Girişi sayıya çevir
+                double number = Convert.ToDouble(input);
+
+                // Sayının karesini hesapla
+                double square = number * number;
+
+                // Sonucu ekrana yazdır
+                Console.WriteLine($"Girdiğiniz sayının karesi: {square}");
+            }
+            catch (FormatException)
+            {
+                // Hatalı giriş olduğunda gösterilecek mesaj
+                Console.WriteLine("Geçersiz giriş! Lütfen bir sayı giriniz.");
+            }
+            finally
+            {
+                // Her durumda çalışacak mesaj
+                Console.WriteLine("Giriş işlemi tamamlandı.");
+            }
         }
     }
 }
